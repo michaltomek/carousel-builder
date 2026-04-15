@@ -3,562 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carousel Builder - Create LinkedIn & Instagram Carousels</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Carousel Builder - Generic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #10B77F;
-            --secondary: #3B82F6;
-            --dark: #141921;
-            --light-bg: #F7F8FA;
-            --white: #FFFFFF;
-            --muted: #6B7280;
-            --border: #E5E7EB;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--white);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-
-        header p {
-            font-size: 18px;
-            font-weight: 400;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto 32px;
-        }
-
-        .cta-button {
-            background: white;
-            color: var(--primary);
-            padding: 14px 48px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 20px;
-        }
-
-        section h2 {
-            font-size: 40px;
-            font-weight: 800;
-            margin-bottom: 48px;
-            text-align: center;
-        }
-
-        section h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--dark);
-        }
-
-        /* What Is This */
-        .what-is {
-            background: var(--light-bg);
-        }
-
-        .what-is-content {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .what-is-content p {
-            margin-bottom: 20px;
-            color: var(--muted);
-        }
-
-        /* For Whom */
-        .for-whom {
-            background: white;
-        }
-
-        .personas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .persona {
-            background: var(--light-bg);
-            padding: 32px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-            text-align: center;
-        }
-
-        .persona-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-
-        .persona h4 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .persona p {
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* How to Use */
-        .how-to {
-            background: var(--light-bg);
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .step {
-            background: white;
-            padding: 32px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            transition: all 0.3s;
-        }
-
-        .step:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0 auto 16px;
-        }
-
-        .step h4 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .step p {
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* Features */
-        .features {
-            background: white;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature {
-            padding: 24px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .feature:hover {
-            border-color: var(--primary);
-            box-shadow: 0 8px 16px rgba(16, 183, 127, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
-
-        .feature h4 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .feature p {
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* Export */
-        .export {
-            background: var(--light-bg);
-        }
-
-        .export-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .export-option {
-            background: white;
-            padding: 32px;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            text-align: center;
-        }
-
-        .export-option.linkedin {
-            border-color: var(--primary);
-        }
-
-        .export-option.instagram {
-            border-color: var(--secondary);
-        }
-
-        .export-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-
-        .export-option h4 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .export-option p {
-            font-size: 14px;
-            color: var(--muted);
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
-
-        .export-list {
-            text-align: left;
-            font-size: 14px;
-            color: var(--muted);
-        }
-
-        .export-list li {
-            margin-bottom: 8px;
-        }
-
-        .export-list strong {
-            color: var(--dark);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            color: white;
-            margin-bottom: 24px;
-        }
-
-        .cta-section p {
-            font-size: 18px;
-            margin-bottom: 32px;
-            opacity: 0.95;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 32px 20px;
-            font-size: 14px;
-        }
-
-        footer p {
-            margin-bottom: 8px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 32px;
-            }
-
-            header p {
-                font-size: 16px;
-            }
-
-            section h2 {
-                font-size: 28px;
-                margin-bottom: 32px;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            .steps, .feature-grid, .personas, .export-options {
-                grid-template-columns: 1fr;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #10B77F; --secondary: #3B82F6; --accent: #F59E0B; --dark: #141921; --light-bg: #F7F8FA; --card-white: #FFFFFF; --muted: #6B7280; --border: #E5E7EB; --radius: 12px; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light-bg); color: var(--dark); padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 420px 1fr; gap: 24px; background: var(--card-white); border-radius: var(--radius); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); overflow: hidden; }
+        .sidebar { background: var(--light-bg); border-right: 1px solid var(--border); padding: 24px; overflow-y: auto; max-height: 100vh; }
+        .section { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+        .section:last-child { border-bottom: none; }
+        .section-title { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: block; }
+        .info-box { background: rgba(16, 183, 127, 0.05); border: 1px solid rgba(16, 183, 127, 0.3); padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+        .info-box p { font-size: 12px; line-height: 1.5; color: #666; }
+        .slides-list { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; margin-bottom: 12px; }
+        .slide-item { padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card-white); cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .slide-item.active { border: 2px solid var(--primary); background: rgba(16, 183, 127, 0.05); color: var(--primary); }
+        .slide-item:hover { border-color: var(--primary); }
+        .form-group { margin-bottom: 14px; }
+        .form-label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+        textarea, select, input[type="text"], input[type="file"], input[type="color"], input[type="number"] { width: 100%; padding: 8px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: 'Inter', sans-serif; transition: border-color 0.2s; }
+        textarea { resize: vertical; min-height: 50px; }
+        input[type="color"] { height: 44px; cursor: pointer; }
+        textarea:focus, select:focus, input:focus { outline: none; border-color: var(--primary); }
+        .color-row { display: grid; grid-template-columns: 60px 1fr; gap: 8px; align-items: center; }
+        .image-preview { width: 100%; height: 80px; border-radius: 6px; margin-top: 8px; background: var(--light-bg); border: 1px solid var(--border); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--muted); }
+        .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+        .btn { width: 100%; padding: 10px; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: #0d9968; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(16, 183, 127, 0.3); }
+        .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--muted); font-size: 12px; margin-top: 6px; }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-success { background: var(--primary); color: white; margin-top: 16px; }
+        .btn-success:hover { background: #0d9968; }
+        .main { padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+        .preview-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; align-self: flex-start; }
+        .carousel-preview { width: 100%; max-width: 450px; aspect-ratio: 9/12; border-radius: var(--radius); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.15); animation: slideIn 0.3s ease-in-out; background-size: cover; background-position: center; position: relative; overflow: hidden; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .carousel-headline { font-size: 48px; font-weight: 800; margin-bottom: 20px; line-height: 1.15; word-break: break-word; }
+        .carousel-subtext { font-size: 16px; font-weight: 400; line-height: 1.6; }
+        .carousel-branding { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .carousel-logo { width: 60px; height: 60px; border-radius: 50%; background-size: cover; background-position: center; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .carousel-handle { font-size: 12px; font-weight: 600; color: white; background: rgba(0,0,0,0.5); padding: 4px 12px; border-radius: 20px; white-space: nowrap; }
+        .highlight-bg { background: var(--accent); padding: 2px 6px; border-radius: 4px; font-weight: 800; color: #000; }
+        .highlight-underline { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 4px; font-weight: 800; }
+        .highlight-bold { color: var(--primary); font-weight: 800; }
+        .nav-controls { display: flex; justify-content: center; align-items: center; gap: 16px; width: 100%; max-width: 450px; }
+        .nav-btn { padding: 10px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--card-white); cursor: pointer; font-size: 13px; font-weight: 500; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+        .nav-btn:hover:not(:disabled) { background: var(--light-bg); border-color: var(--primary); color: var(--primary); }
+        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .dots { display: flex; gap: 4px; justify-content: center; flex: 1; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; transition: all 0.2s; }
+        .dot.active { width: 24px; border-radius: 4px; background: var(--primary); }
+        .guidelines { background: rgba(16, 183, 127, 0.05); border: 1px solid var(--primary); border-radius: 8px; padding: 16px; font-size: 12px; line-height: 1.6; color: var(--dark); max-width: 450px; width: 100%; }
+        .guidelines h4 { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: var(--primary); }
+        .guidelines ul { margin-left: 16px; }
+        .guidelines li { margin-bottom: 4px; }
+        #carousel-pdf { display: none; }
+        @media (max-width: 1024px) { .container { grid-template-columns: 1fr; } .sidebar { max-height: 400px; } .carousel-preview { max-width: 100%; } }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>Create Beautiful Carousels in Minutes</h1>
-            <p>Free, no-code carousel builder for LinkedIn and Instagram. Customize fonts, colors, and branding—all in one place.</p>
-            <a href="builder.html" class="cta-button">Launch Builder →</a>
-        </div>
-    </header>
-
-    <!-- What Is This -->
-    <section class="what-is">
-        <div class="container">
-            <h2>What Is This?</h2>
-            <div class="what-is-content">
-                <p>
-                    A <strong>free, generic carousel builder</strong> for anyone creating LinkedIn or Instagram carousels. 
-                    No design skills needed. No complicated software. Just pick your fonts, colors, and branding—then export 
-                    as PDF or images.
-                </p>
-                <p>
-                    Use it for your personal brand, your business, your client work, or anything else. It's completely customizable 
-                    and works for <strong>any brand or industry</strong>.
-                </p>
+    <div class="container">
+        <div class="sidebar">
+            <div class="info-box">
+                <span class="section-title">💡 Generic Carousel Builder</span>
+                <p>Customize fonts, colors, and branding for <strong>any brand</strong>. Perfect for LinkedIn or Instagram.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- For Whom -->
-    <section class="for-whom">
-        <div class="container">
-            <h2>Who Is This For?</h2>
-            <div class="personas">
-                <div class="persona">
-                    <div class="persona-icon">💼</div>
-                    <h4>Entrepreneurs</h4>
-                    <p>Share insights, tips, and stories with your audience on LinkedIn or Instagram without design skills.</p>
-                </div>
-                <div class="persona">
-                    <div class="persona-icon">🎨</div>
-                    <h4>Creators</h4>
-                    <p>Build carousels quickly for your content strategy. Customize for your brand voice and aesthetic.</p>
-                </div>
-                <div class="persona">
-                    <div class="persona-icon">📈</div>
-                    <h4>Marketers</h4>
-                    <p>Create branded carousels for campaigns, product launches, or client work—fast and consistently.</p>
-                </div>
-                <div class="persona">
-                    <div class="persona-icon">🔧</div>
-                    <h4>Developers</h4>
-                    <p>Use this as a template or tool in your workflow. It's fully open-source and customizable.</p>
+            <div class="section">
+                <span class="section-title">Font</span>
+                <div class="form-group">
+                    <select id="fontFamily" onchange="updateFont()">
+                        <option value="Inter">Inter (Default)</option>
+                        <option value="Playfair Display">Playfair Display (Serif)</option>
+                        <option value="Poppins">Poppins (Modern)</option>
+                        <option value="Montserrat">Montserrat (Bold)</option>
+                        <option value="Lato">Lato (Clean)</option>
+                        <option value="Roboto">Roboto (Professional)</option>
+                    </select>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- How to Use -->
-    <section class="how-to">
-        <div class="container">
-            <h2>How to Create a Carousel in 5 Steps</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>Pick Your Font</h4>
-                    <p>Choose from 6 professional fonts (Inter, Playfair, Poppins, Montserrat, Lato, Roboto). Applied to all slides.</p>
+            <div class="section">
+                <span class="section-title">Slides (<span id="slideCount">1</span>)</span>
+                <div class="slides-list" id="slidesList"></div>
+                <button class="btn btn-primary" onclick="addSlide()">+ Add Slide</button>
+            </div>
+
+            <div class="section">
+                <span class="section-title">Slide <span id="currentSlideNum">1</span> Content</span>
+                <div class="form-group">
+                    <label class="form-label">Headline (Main)</label>
+                    <textarea id="headlineInput" placeholder="Your main message here" oninput="updateCurrentSlide()"></textarea>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Add Your Text</h4>
-                    <p>Write your headline and subtext for each slide. Highlight specific words to make them stand out.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Customize Colors</h4>
-                    <p>Set headline color, subtext color, and background. Use color pickers or paste hex codes.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>Add Branding</h4>
-                    <p>Upload your logo/headshot and handle. Position in corners or show only on the last slide.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h4>Export & Share</h4>
-                    <p>Download as PDF (for LinkedIn) or PNG images (for Instagram). All changes auto-save.</p>
+                <div class="form-group">
+                    <label class="form-label">Subtext (Optional)</label>
+                    <textarea id="subtextInput" placeholder="Supporting text or description" oninput="updateCurrentSlide()"></textarea>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Features -->
-    <section class="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <div class="feature-icon">🎨</div>
-                    <h4>6 Professional Fonts</h4>
-                    <p>Choose from Inter, Playfair Display, Poppins, Montserrat, Lato, and Roboto. All applied globally.</p>
+            <div class="section">
+                <span class="section-title">Text Colors</span>
+                <div class="form-group">
+                    <label class="form-label">Headline Color</label>
+                    <div class="color-row">
+                        <input type="color" id="headlineColor" value="#141921" onchange="updateCurrentSlide()">
+                        <input type="text" id="headlineColorText" value="#141921" onchange="syncColors('headline')" placeholder="#000000">
+                    </div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <h4>Unlimited Colors</h4>
-                    <p>Full color control for headlines, subtext, and backgrounds. Use color pickers or hex codes.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🖼️</div>
-                    <h4>Background Images</h4>
-                    <p>Upload any image as your slide background. Mix solid colors and images across slides.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">✨</div>
-                    <h4>Word Highlighting</h4>
-                    <p>Highlight any word with background, underline, or bold color. Draw attention to key points.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💁</div>
-                    <h4>Logo & Handle</h4>
-                    <p>Add your headshot/logo and @handle. Position in any corner or show on last slide only.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💾</div>
-                    <h4>Auto-Save</h4>
-                    <p>All your work is automatically saved to your browser. Refresh without losing anything.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <h4>Live Preview</h4>
-                    <p>See changes in real-time as you edit. 9:12 aspect ratio matches Instagram vertical format.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🔄</div>
-                    <h4>Multiple Slides</h4>
-                    <p>Create up to 10 carousels. Add, delete, and navigate between slides easily.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">✅</div>
-                    <h4>100% Free</h4>
-                    <p>No sign-up, no watermark, no limitations. Use it as much as you want.</p>
+                <div class="form-group">
+                    <label class="form-label">Subtext Color</label>
+                    <div class="color-row">
+                        <input type="color" id="subtextColor" value="#6B7280" onchange="updateCurrentSlide()">
+                        <input type="text" id="subtextColorText" value="#6B7280" onchange="syncColors('subtext')" placeholder="#000000">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Export Options -->
-    <section class="export">
-        <div class="container">
-            <h2>Two Export Options</h2>
-            <div class="export-options">
-                <div class="export-option linkedin">
-                    <div class="export-icon">📄</div>
-                    <h4>PDF (LinkedIn)</h4>
-                    <p>Perfect for LinkedIn document carousels. One PDF file with all slides.</p>
-                    <ul class="export-list">
-                        <li>✓ <strong>Format:</strong> PDF (A4, portrait)</li>
-                        <li>✓ <strong>Quality:</strong> High-resolution images</li>
-                        <li>✓ <strong>Usage:</strong> Upload directly to LinkedIn</li>
-                        <li>✓ <strong>File:</strong> carousel.pdf</li>
-                    </ul>
+            <div class="section">
+                <span class="section-title">Highlight Word</span>
+                <div class="form-group">
+                    <label class="form-label">Word to Highlight</label>
+                    <input type="text" id="highlightWord" placeholder="e.g., 'important'" oninput="updateCurrentSlide()">
                 </div>
-                <div class="export-option instagram">
-                    <div class="export-icon">🖼️</div>
-                    <h4>PNG Images (Instagram)</h4>
-                    <p>Individual image files for Instagram carousels. Upload up to 10 images per post.</p>
-                    <ul class="export-list">
-                        <li>✓ <strong>Format:</strong> PNG (1080x1350px)</li>
-                        <li>✓ <strong>Quality:</strong> Instagram-optimized</li>
-                        <li>✓ <strong>Usage:</strong> Upload to Instagram carousel</li>
-                        <li>✓ <strong>Files:</strong> slide-1.png, slide-2.png, etc.</li>
-                    </ul>
+                <div class="form-group">
+                    <label class="form-label">Highlight Style</label>
+                    <select id="highlightStyle" onchange="updateCurrentSlide()">
+                        <option value="none">None</option>
+                        <option value="background">Background</option>
+                        <option value="underline">Underline</option>
+                        <option value="bold">Bold Color</option>
+                    </select>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Create?</h2>
-            <p>Start building your carousel now. It takes just a few minutes.</p>
-            <a href="builder.html" class="cta-button">Launch Builder →</a>
-        </div>
-    </section>
+            <div class="section">
+                <span class="section-title">Background</span>
+                <div class="form-group">
+                    <label class="form-label">Background Color</label>
+                    <div class="color-row">
+                        <input type="color" id="bgColor" value="#FFFFFF" onchange="updateCurrentSlide()">
+                        <input type="text" id="bgColorText" value="#FFFFFF" onchange="syncColors('bg')" placeholder="#000000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">or Upload Image</label>
+                    <input type="file" id="bgImageInput" accept="image/*" onchange="uploadBackgroundImage()">
+                </div>
+                <div class="image-preview" id="bgImagePreview">No image</div>
+                <button class="btn btn-secondary" onclick="removeBackgroundImage()">Remove Image</button>
+            </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>💡 Carousel Builder</p>
-            <p>Free, open-source carousel builder for LinkedIn and Instagram</p>
-            <p style="margin-top: 16px; opacity: 0.7;">© 2024 | Made with ❤️</p>
+            <div class="section">
+                <span class="section-title">Branding (Optional)</span>
+                <div class="form-group">
+                    <label class="form-label">Logo/Headshot</label>
+                    <input type="file" id="logoInput" accept="image/*" onchange="uploadLogo()">
+                </div>
+                <div class="image-preview" id="logoPreview">No logo</div>
+                <button class="btn btn-secondary" onclick="removeLogo()">Remove Logo</button>
+                
+                <div class="form-group" style="margin-top: 12px;">
+                    <label class="form-label">Handle/Name</label>
+                    <input type="text" id="handleInput" placeholder="@yourhandle or Your Name" onchange="updateCurrentSlide()">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Logo Size</label>
+                    <input type="number" id="logoSize" min="30" max="100" value="60" step="5" onchange="updateCurrentSlide()">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Position</label>
+                    <select id="logoPosition" onchange="updateCurrentSlide()">
+                        <option value="none">None</option>
+                        <option value="top-left">Top Left</option>
+                        <option value="top-right">Top Right</option>
+                        <option value="bottom-left">Bottom Left</option>
+                        <option value="bottom-right">Bottom Right</option>
+                        <option value="last-slide-only">Last Slide Only</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn btn-success" onclick="downloadPDF()">⬇ Download PDF (LinkedIn)</button>
+            <button class="btn btn-success" style="margin-top: 8px; background: #3B82F6;" onclick="downloadImages()">⬇ Download Images (Instagram)</button>
         </div>
-    </footer>
+
+        <div class="main">
+            <span class="preview-label">Live Preview</span>
+            <div class="carousel-preview" id="previewCarousel">
+                <div id="carouselContent"></div>
+                <div class="carousel-branding" id="brandingElement" style="display: none;"></div>
+            </div>
+
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Previous</button>
+                <div class="dots" id="dotsContainer"></div>
+                <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+            </div>
+
+            <div class="guidelines">
+                <h4>✓ Features</h4>
+                <ul>
+                    <li><strong>Custom fonts:</strong> Choose from 6 popular fonts</li>
+                    <li><strong>Brand colors:</strong> Full control over text & background</li>
+                    <li><strong>Logo/Handle:</strong> Add to corners or last slide only</li>
+                    <li><strong>Export both:</strong> PDF for LinkedIn, PNGs for Instagram</li>
+                    <li><strong>Auto-save:</strong> All changes saved to browser</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="carousel-pdf"></div>
+
+    <script>
+        let globalFont = 'Inter', slides = [{headline: '', subtext: '', headlineColor: '#141921', subtextColor: '#6B7280', bgColor: '#FFFFFF', bgImage: null, highlightWord: '', highlightStyle: 'none', handle: '', logoSize: 60}], currentSlide = 0, globalLogo = null;
+
+        function init() { loadFromLocalStorage(); renderSlidesList(); updatePreview(); updateInputs(); }
+        function saveToLocalStorage() { localStorage.setItem('carouselSlides', JSON.stringify(slides)); localStorage.setItem('carouselFont', globalFont); localStorage.setItem('carouselLogo', globalLogo); localStorage.setItem('currentSlideIndex', currentSlide); }
+        function loadFromLocalStorage() { const saved = localStorage.getItem('carouselSlides'), savedFont = localStorage.getItem('carouselFont'), savedLogo = localStorage.getItem('carouselLogo'), savedIndex = localStorage.getItem('currentSlideIndex'); if (saved) { try { slides = JSON.parse(saved); globalFont = savedFont || 'Inter'; globalLogo = savedLogo || null; currentSlide = parseInt(savedIndex) || 0; } catch (e) { console.error('Error loading:', e); } } }
+        function renderSlidesList() { const list = document.getElementById('slidesList'); list.innerHTML = ''; slides.forEach((slide, idx) => { const item = document.createElement('div'); item.className = `slide-item ${idx === currentSlide ? 'active' : ''}`; item.textContent = `Slide ${idx + 1}: ${slide.headline || '(empty)'}`; if (slides.length > 1) { const deleteBtn = document.createElement('span'); deleteBtn.textContent = '✕'; deleteBtn.style.cssText = 'float: right; cursor: pointer; font-weight: 700; color: #CC0000;'; deleteBtn.onclick = (e) => { e.stopPropagation(); deleteSlide(idx); }; item.appendChild(deleteBtn); } item.onclick = () => selectSlide(idx); list.appendChild(item); }); document.getElementById('slideCount').textContent = slides.length; }
+        function addSlide() { slides.push({headline: '', subtext: '', headlineColor: '#141921', subtextColor: '#6B7280', bgColor: '#FFFFFF', bgImage: null, highlightWord: '', highlightStyle: 'none', handle: ''}); currentSlide = slides.length - 1; renderSlidesList(); updateInputs(); updatePreview(); saveToLocalStorage(); }
+        function deleteSlide(idx) { if (slides.length > 1) { slides.splice(idx, 1); if (currentSlide >= slides.length) currentSlide = slides.length - 1; renderSlidesList(); updateInputs(); updatePreview(); saveToLocalStorage(); } }
+        function selectSlide(idx) { currentSlide = idx; renderSlidesList(); updateInputs(); updatePreview(); saveToLocalStorage(); }
+        function updateFont() { globalFont = document.getElementById('fontFamily').value; updatePreview(); saveToLocalStorage(); }
+        function uploadLogo() { const input = document.getElementById('logoInput'), file = input.files[0]; if (file) { const reader = new FileReader(); reader.onload = (e) => { globalLogo = e.target.result; updateLogoPreview(); updatePreview(); saveToLocalStorage(); }; reader.readAsDataURL(file); } }
+        function removeLogo() { globalLogo = null; document.getElementById('logoInput').value = ''; updateLogoPreview(); updatePreview(); saveToLocalStorage(); }
+        function updateLogoPreview() { const preview = document.getElementById('logoPreview'); if (globalLogo) { preview.innerHTML = `<img src="${globalLogo}" alt="Logo">`; } else { preview.textContent = 'No logo'; preview.style.display = 'flex'; } }
+        function uploadBackgroundImage() { const input = document.getElementById('bgImageInput'), file = input.files[0]; if (file) { const reader = new FileReader(); reader.onload = (e) => { slides[currentSlide].bgImage = e.target.result; updateBgImagePreview(); updatePreview(); saveToLocalStorage(); }; reader.readAsDataURL(file); } }
+        function removeBackgroundImage() { slides[currentSlide].bgImage = null; document.getElementById('bgImageInput').value = ''; updateBgImagePreview(); updatePreview(); saveToLocalStorage(); }
+        function updateBgImagePreview() { const preview = document.getElementById('bgImagePreview'); if (slides[currentSlide].bgImage) { preview.innerHTML = `<img src="${slides[currentSlide].bgImage}" alt="Background">`; } else { preview.textContent = 'No image'; preview.style.display = 'flex'; } }
+        function syncColors(type) { if (type === 'headline') { const color = document.getElementById('headlineColorText').value; document.getElementById('headlineColor').value = color; } else if (type === 'subtext') { const color = document.getElementById('subtextColorText').value; document.getElementById('subtextColor').value = color; } else if (type === 'bg') { const color = document.getElementById('bgColorText').value; document.getElementById('bgColor').value = color; } updateCurrentSlide(); }
+        function updateCurrentSlide() { slides[currentSlide].headline = document.getElementById('headlineInput').value; slides[currentSlide].subtext = document.getElementById('subtextInput').value; slides[currentSlide].headlineColor = document.getElementById('headlineColor').value; slides[currentSlide].subtextColor = document.getElementById('subtextColor').value; slides[currentSlide].bgColor = document.getElementById('bgColor').value; slides[currentSlide].highlightWord = document.getElementById('highlightWord').value; slides[currentSlide].highlightStyle = document.getElementById('highlightStyle').value; slides[currentSlide].handle = document.getElementById('handleInput').value; slides[currentSlide].logoSize = parseInt(document.getElementById('logoSize').value); document.getElementById('headlineColorText').value = slides[currentSlide].headlineColor; document.getElementById('subtextColorText').value = slides[currentSlide].subtextColor; document.getElementById('bgColorText').value = slides[currentSlide].bgColor; renderSlidesList(); updatePreview(); saveToLocalStorage(); }
+        function updateInputs() { const slide = slides[currentSlide]; document.getElementById('headlineInput').value = slide.headline || ''; document.getElementById('subtextInput').value = slide.subtext || ''; document.getElementById('headlineColor').value = slide.headlineColor || '#141921'; document.getElementById('subtextColor').value = slide.subtextColor || '#6B7280'; document.getElementById('bgColor').value = slide.bgColor || '#FFFFFF'; document.getElementById('highlightWord').value = slide.highlightWord || ''; document.getElementById('highlightStyle').value = slide.highlightStyle || 'none'; document.getElementById('handleInput').value = slide.handle || ''; document.getElementById('logoSize').value = slide.logoSize || 60; document.getElementById('fontFamily').value = globalFont; document.getElementById('currentSlideNum').textContent = currentSlide + 1; document.getElementById('headlineColorText').value = slide.headlineColor || '#141921'; document.getElementById('subtextColorText').value = slide.subtextColor || '#6B7280'; document.getElementById('bgColorText').value = slide.bgColor || '#FFFFFF'; document.getElementById('bgImageInput').value = ''; updateBgImagePreview(); updateLogoPreview(); }
+        function applyHighlight(text, highlightWord, style, headlineColor) { if (!highlightWord || style === 'none') { return `<span style="color: ${headlineColor};">${escapeHtml(text)}</span>`; } const regex = new RegExp(`\\b(${escapeRegex(highlightWord)})\\b`, 'gi'); const highlighted = text.replace(regex, (match) => { if (style === 'background') { return `<span class="highlight-bg">${escapeHtml(match)}</span>`; } else if (style === 'underline') { return `<span class="highlight-underline">${escapeHtml(match)}</span>`; } else if (style === 'bold') { return `<span class="highlight-bold">${escapeHtml(match)}</span>`; } return escapeHtml(match); }); return `<span style="color: ${headlineColor};">${highlighted}</span>`; }
+        function updatePreview() { const slide = slides[currentSlide], preview = document.getElementById('previewCarousel'), content = document.getElementById('carouselContent'), branding = document.getElementById('brandingElement'); preview.style.backgroundColor = slide.bgColor; if (slide.bgImage) { preview.style.backgroundImage = `url(${slide.bgImage})`; preview.style.backgroundSize = 'cover'; preview.style.backgroundPosition = 'center'; } else { preview.style.backgroundImage = 'none'; } const headlineHighlighted = applyHighlight(slide.headline, slide.highlightWord, slide.highlightStyle, slide.headlineColor); const subtextHighlighted = slide.subtext ? `<span style="color: ${slide.subtextColor};">${applyHighlight(slide.subtext, slide.highlightWord, slide.highlightStyle, slide.subtextColor)}</span>` : ''; content.innerHTML = `<div class="carousel-headline" style="font-family: '${globalFont}', sans-serif;">${headlineHighlighted}</div>${subtextHighlighted ? `<div class="carousel-subtext" style="font-family: '${globalFont}', sans-serif;">${subtextHighlighted}</div>` : ''}`; const logoPosition = document.getElementById('logoPosition')?.value || 'none'; const shouldShowLogo = globalLogo && logoPosition !== 'none' && (logoPosition !== 'last-slide-only' || currentSlide === slides.length - 1); if (shouldShowLogo) { const logoSize = slide.logoSize || 60; branding.innerHTML = `<div class="carousel-logo" style="width: ${logoSize}px; height: ${logoSize}px; background-image: url('${globalLogo}');"></div>${slide.handle ? `<div class="carousel-handle">${escapeHtml(slide.handle)}</div>` : ''}`; branding.style.display = 'flex'; branding.style[logoPosition.split('-')[0]] = '20px'; branding.style[logoPosition.split('-')[1]] = '20px'; } else { branding.style.display = 'none'; } updateDots(); updateNavButtons(); }
+        function updateDots() { const dotsContainer = document.getElementById('dotsContainer'); dotsContainer.innerHTML = ''; slides.forEach((_, idx) => { const dot = document.createElement('button'); dot.className = `dot ${idx === currentSlide ? 'active' : ''}`; dot.onclick = () => selectSlide(idx); dotsContainer.appendChild(dot); }); }
+        function updateNavButtons() { document.getElementById('prevBtn').disabled = currentSlide === 0; document.getElementById('nextBtn').disabled = currentSlide === slides.length - 1; }
+        function prevSlide() { if (currentSlide > 0) selectSlide(currentSlide - 1); }
+        function nextSlide() { if (currentSlide < slides.length - 1) selectSlide(currentSlide + 1); }
+        function downloadPDF() { const pdfContainer = document.getElementById('carousel-pdf'); pdfContainer.innerHTML = ''; slides.forEach((slide, idx) => { const page = document.createElement('div'); page.style.cssText = `width: 100%; aspect-ratio: 9/12; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; text-align: center; font-family: '${globalFont}', sans-serif; page-break-after: always; min-height: 100vh; box-sizing: border-box; background-color: ${slide.bgColor}; position: relative; overflow: hidden; ${slide.bgImage ? `background-image: url(${slide.bgImage}); background-size: cover; background-position: center;` : ''}`; const headlineHighlighted = applyHighlight(slide.headline, slide.highlightWord, slide.highlightStyle, slide.headlineColor); const subtextHighlighted = slide.subtext ? applyHighlight(slide.subtext, slide.highlightWord, slide.highlightStyle, slide.subtextColor) : ''; const logoPosition = document.getElementById('logoPosition')?.value || 'none'; const shouldShowLogo = globalLogo && logoPosition !== 'none' && (logoPosition !== 'last-slide-only' || idx === slides.length - 1); let brandingHtml = ''; if (shouldShowLogo) { const logoSize = slide.logoSize || 60; const pos = logoPosition.split('-'); brandingHtml = `<div style="position: absolute; ${pos[0]}: 20px; ${pos[1]}: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: ${logoSize}px; height: ${logoSize}px; border-radius: 50%; background-image: url('${globalLogo}'); background-size: cover; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"></div>${slide.handle ? `<div style="font-size: 12px; font-weight: 600; color: white; background: rgba(0,0,0,0.5); padding: 4px 12px; border-radius: 20px;">${escapeHtml(slide.handle)}</div>` : ''}</div>`; } page.innerHTML = `<div style="font-size: 64px; font-weight: 800; margin-bottom: 30px; line-height: 1.15;">${headlineHighlighted}</div>${subtextHighlighted ? `<div style="font-size: 18px; font-weight: 400; line-height: 1.6; color: ${slide.subtextColor};">${subtextHighlighted}</div>` : ''}${brandingHtml}`; pdfContainer.appendChild(page); }); const opt = { margin: 0, filename: 'carousel.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { format: 'a4', orientation: 'portrait' } }; html2pdf().set(opt).from(pdfContainer).save(); }
+        async function downloadImages() { const statusDiv = document.createElement('div'); statusDiv.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #10B77F; color: white; padding: 16px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; z-index: 9999;'; statusDiv.textContent = 'Preparing images...'; document.body.appendChild(statusDiv); for (let idx = 0; idx < slides.length; idx++) { const slide = slides[idx]; const slideDiv = document.createElement('div'); slideDiv.style.cssText = `width: 1080px; height: 1350px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px; text-align: center; font-family: '${globalFont}', sans-serif; background-color: ${slide.bgColor}; ${slide.bgImage ? `background-image: url(${slide.bgImage}); background-size: cover; background-position: center;` : ''} position: absolute; left: -9999px;`; const headlineHighlighted = applyHighlight(slide.headline, slide.highlightWord, slide.highlightStyle, slide.headlineColor); const subtextHighlighted = slide.subtext ? applyHighlight(slide.subtext, slide.highlightWord, slide.highlightStyle, slide.subtextColor) : ''; const logoPosition = document.getElementById('logoPosition')?.value || 'none'; const shouldShowLogo = globalLogo && logoPosition !== 'none' && (logoPosition !== 'last-slide-only' || idx === slides.length - 1); let brandingHtml = ''; if (shouldShowLogo) { const logoSize = slide.logoSize || 60; const pos = logoPosition.split('-'); brandingHtml = `<div style="position: absolute; ${pos[0]}: 30px; ${pos[1]}: 30px; display: flex; flex-direction: column; align-items: center; gap: 10px;"><div style="width: ${logoSize}px; height: ${logoSize}px; border-radius: 50%; background-image: url('${globalLogo}'); background-size: cover; border: 4px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"></div>${slide.handle ? `<div style="font-size: 14px; font-weight: 600; color: white; background: rgba(0,0,0,0.5); padding: 6px 16px; border-radius: 20px;">${escapeHtml(slide.handle)}</div>` : ''}</div>`; } slideDiv.innerHTML = `<div style="font-size: 72px; font-weight: 800; margin-bottom: 30px; line-height: 1.15;">${headlineHighlighted}</div>${subtextHighlighted ? `<div style="font-size: 24px; font-weight: 400; line-height: 1.6; color: ${slide.subtextColor};">${subtextHighlighted}</div>` : ''}${brandingHtml}`; document.body.appendChild(slideDiv); try { const canvas = await html2canvas(slideDiv, { scale: 2, backgroundColor: slide.bgColor, logging: false }); canvas.toBlob((blob) => { const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = `carousel-slide-${idx + 1}.png`; document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); }, 'image/png'); statusDiv.textContent = `Downloading: Slide ${idx + 1} of ${slides.length}`; await new Promise(resolve => setTimeout(resolve, 500)); } catch (e) { console.error('Error:', e); } document.body.removeChild(slideDiv); } statusDiv.textContent = '✓ All images downloaded!'; setTimeout(() => document.body.removeChild(statusDiv), 3000); }
+        function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
+        function escapeRegex(text) { return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+        init();
+    </script>
 </body>
 </html>
