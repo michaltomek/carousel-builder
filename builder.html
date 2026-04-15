@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Builder - Create LinkedIn & Instagram Carousels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #10B77F;
+            --secondary: #3B82F6;
+            --dark: #141921;
+            --light-bg: #F7F8FA;
+            --white: #FFFFFF;
+            --muted: #6B7280;
+            --border: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        header p {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            padding: 14px 48px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+
+        /* What Is This */
+        .what-is {
+            background: var(--light-bg);
+        }
+
+        .what-is-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .what-is-content p {
+            margin-bottom: 20px;
+            color: var(--muted);
+        }
+
+        /* For Whom */
+        .for-whom {
+            background: white;
+        }
+
+        .personas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .persona {
+            background: var(--light-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            text-align: center;
+        }
+
+        .persona-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .persona h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .persona p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* How to Use */
+        .how-to {
+            background: var(--light-bg);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 auto 16px;
+        }
+
+        .step h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Features */
+        .features {
+            background: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .feature:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 16px rgba(16, 183, 127, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .feature h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Export */
+        .export {
+            background: var(--light-bg);
+        }
+
+        .export-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .export-option {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            text-align: center;
+        }
+
+        .export-option.linkedin {
+            border-color: var(--primary);
+        }
+
+        .export-option.instagram {
+            border-color: var(--secondary);
+        }
+
+        .export-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .export-option h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .export-option p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .export-list {
+            text-align: left;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .export-list li {
+            margin-bottom: 8px;
+        }
+
+        .export-list strong {
+            color: var(--dark);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            section h2 {
+                font-size: 28px;
+                margin-bottom: 32px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .steps, .feature-grid, .personas, .export-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Create Beautiful Carousels in Minutes</h1>
+            <p>Free, no-code carousel builder for LinkedIn and Instagram. Customize fonts, colors, and branding—all in one place.</p>
+            <a href="builder.html" class="cta-button">Launch Builder →</a>
+        </div>
+    </header>
+
+    <!-- What Is This -->
+    <section class="what-is">
+        <div class="container">
+            <h2>What Is This?</h2>
+            <div class="what-is-content">
+                <p>
+                    A <strong>free, generic carousel builder</strong> for anyone creating LinkedIn or Instagram carousels. 
+                    No design skills needed. No complicated software. Just pick your fonts, colors, and branding—then export 
+                    as PDF or images.
+                </p>
+                <p>
+                    Use it for your personal brand, your business, your client work, or anything else. It's completely customizable 
+                    and works for <strong>any brand or industry</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Whom -->
+    <section class="for-whom">
+        <div class="container">
+            <h2>Who Is This For?</h2>
+            <div class="personas">
+                <div class="persona">
+                    <div class="persona-icon">💼</div>
+                    <h4>Entrepreneurs</h4>
+                    <p>Share insights, tips, and stories with your audience on LinkedIn or Instagram without design skills.</p>
+                </div>
+                <div class="persona">
+                    <div class="persona-icon">🎨</div>
+                    <h4>Creators</h4>
+                    <p>Build carousels quickly for your content strategy. Customize for your brand voice and aesthetic.</p>
+                </div>
+                <div class="persona">
+                    <div class="persona-icon">📈</div>
+                    <h4>Marketers</h4>
+                    <p>Create branded carousels for campaigns, product launches, or client work—fast and consistently.</p>
+                </div>
+                <div class="persona">
+                    <div class="persona-icon">🔧</div>
+                    <h4>Developers</h4>
+                    <p>Use this as a template or tool in your workflow. It's fully open-source and customizable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use -->
+    <section class="how-to">
+        <div class="container">
+            <h2>How to Create a Carousel in 5 Steps</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Pick Your Font</h4>
+                    <p>Choose from 6 professional fonts (Inter, Playfair, Poppins, Montserrat, Lato, Roboto). Applied to all slides.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Add Your Text</h4>
+                    <p>Write your headline and subtext for each slide. Highlight specific words to make them stand out.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Customize Colors</h4>
+                    <p>Set headline color, subtext color, and background. Use color pickers or paste hex codes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Add Branding</h4>
+                    <p>Upload your logo/headshot and handle. Position in corners or show only on the last slide.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Export & Share</h4>
+                    <p>Download as PDF (for LinkedIn) or PNG images (for Instagram). All changes auto-save.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h4>6 Professional Fonts</h4>
+                    <p>Choose from Inter, Playfair Display, Poppins, Montserrat, Lato, and Roboto. All applied globally.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Unlimited Colors</h4>
+                    <p>Full color control for headlines, subtext, and backgrounds. Use color pickers or hex codes.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🖼️</div>
+                    <h4>Background Images</h4>
+                    <p>Upload any image as your slide background. Mix solid colors and images across slides.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✨</div>
+                    <h4>Word Highlighting</h4>
+                    <p>Highlight any word with background, underline, or bold color. Draw attention to key points.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💁</div>
+                    <h4>Logo & Handle</h4>
+                    <p>Add your headshot/logo and @handle. Position in any corner or show on last slide only.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💾</div>
+                    <h4>Auto-Save</h4>
+                    <p>All your work is automatically saved to your browser. Refresh without losing anything.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h4>Live Preview</h4>
+                    <p>See changes in real-time as you edit. 9:12 aspect ratio matches Instagram vertical format.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h4>Multiple Slides</h4>
+                    <p>Create up to 10 carousels. Add, delete, and navigate between slides easily.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✅</div>
+                    <h4>100% Free</h4>
+                    <p>No sign-up, no watermark, no limitations. Use it as much as you want.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Options -->
+    <section class="export">
+        <div class="container">
+            <h2>Two Export Options</h2>
+            <div class="export-options">
+                <div class="export-option linkedin">
+                    <div class="export-icon">📄</div>
+                    <h4>PDF (LinkedIn)</h4>
+                    <p>Perfect for LinkedIn document carousels. One PDF file with all slides.</p>
+                    <ul class="export-list">
+                        <li>✓ <strong>Format:</strong> PDF (A4, portrait)</li>
+                        <li>✓ <strong>Quality:</strong> High-resolution images</li>
+                        <li>✓ <strong>Usage:</strong> Upload directly to LinkedIn</li>
+                        <li>✓ <strong>File:</strong> carousel.pdf</li>
+                    </ul>
+                </div>
+                <div class="export-option instagram">
+                    <div class="export-icon">🖼️</div>
+                    <h4>PNG Images (Instagram)</h4>
+                    <p>Individual image files for Instagram carousels. Upload up to 10 images per post.</p>
+                    <ul class="export-list">
+                        <li>✓ <strong>Format:</strong> PNG (1080x1350px)</li>
+                        <li>✓ <strong>Quality:</strong> Instagram-optimized</li>
+                        <li>✓ <strong>Usage:</strong> Upload to Instagram carousel</li>
+                        <li>✓ <strong>Files:</strong> slide-1.png, slide-2.png, etc.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Create?</h2>
+            <p>Start building your carousel now. It takes just a few minutes.</p>
+            <a href="builder.html" class="cta-button">Launch Builder →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>💡 Carousel Builder</p>
+            <p>Free, open-source carousel builder for LinkedIn and Instagram</p>
+            <p style="margin-top: 16px; opacity: 0.7;">© 2024 | Made with ❤️</p>
+        </div>
+    </footer>
+</body>
+</html>

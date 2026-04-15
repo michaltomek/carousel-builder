@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Builder — Create Professional LinkedIn & Instagram Carousels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7C3AED;
+            --primary-light: #A78BFA;
+            --accent: #EC4899;
+            --accent-warm: #F97316;
+            --dark: #0F172A;
+            --light: #FFFFFF;
+            --muted: #64748B;
+            --bg: #F8FAFC;
+            --border: #E2E8F0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .cta-header {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 183, 127, 0.3);
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 60px 24px;
+            text-align: center;
+            background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 183, 127, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+            color: white;
+        }
+
+        .hero h1 .highlight {
+            color: #FFFFFF;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(16, 183, 127, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid white;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 24px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+
+        .what-is {
+            background: white;
+        }
+
+        .what-is-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .what-is-text p {
+            color: var(--muted);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .what-is-text ul {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .what-is-text li {
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--muted);
+        }
+
+        .what-is-text li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .features {
+            background: var(--bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 12px 32px rgba(16, 183, 127, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .how-to {
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .step {
+            background: var(--bg);
+            padding: 16px 12px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            background: white;
+            border-color: var(--primary);
+        }
+
+        .step-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .step h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .step p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .exports {
+            background: var(--bg);
+        }
+
+        .export-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .export-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .export-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 12px 32px rgba(16, 183, 127, 0.15);
+        }
+
+        .export-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .export-card p {
+            color: var(--muted);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .export-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .export-features li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .export-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .faq {
+            background: white;
+            margin: 80px auto;
+            max-width: 800px;
+        }
+
+        .faq h2 {
+            text-align: center;
+        }
+
+        .faq-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 24px;
+            border-radius: 16px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .cta-section h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .what-is-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Carousel<span>.</span></div>
+            <a href="builder.html" class="cta-header">make one</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Fucking hell. <span class="highlight">Another carousel.</span></h1>
+            <p style="font-size: 16px; margin-bottom: 16px; opacity: 0.9;">Look. You don't want to spend three hours learning some design tool you'll never use again. You don't want to figure out kerning or spacing or whatever designers obsess over. You just want something that looks intentional. Done.</p>
+            <div class="cta-buttons">
+                <a href="builder.html" class="btn btn-primary">make one now</a>
+                <a href="#features" class="btn btn-secondary">tell me more</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Is -->
+    <section class="what-is">
+        <div class="what-is-text">
+            <h3>You're not a designer. Why should you act like one?</h3>
+            <p>It's a template. But it's yours. Your colors, your text, your vibe.</p>
+            <ul>
+                <li>Fonts that work. No weird shit.</li>
+                <li>Colors picked so they actually look decent together</li>
+                <li>Your logo and handle if you want them</li>
+                <li>Real images you actually care about</li>
+                <li>Everything saves. Obviously.</li>
+            </ul>
+            <p style="margin-top: 24px; font-size: 13px;">Free. No account. No bullshit.</p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <h2 class="section-title">Here's what you get</h2>
+        <p class="section-subtitle">The good stuff.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Six fonts that don't suck</h3>
+                <p>Pick one and use it everywhere.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Colors that go together</h3>
+                <p>Pick colors that actually pair well.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Make words pop</h3>
+                <p>Bold, underline, or highlight. Whatever works.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Your background images</h3>
+                <p>Upload a photo. Text sits on top.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Your logo and name</h3>
+                <p>Round image. Your handle. Make it yours.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>It just stays saved</h3>
+                <p>Come back whenever. Everything's there.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How To -->
+    <section class="how-to">
+        <h2 class="section-title">How to do this</h2>
+        <p class="section-subtitle">Five minutes.</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Pick a font</h4>
+                <p>Any of them work.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Write your thing</h4>
+                <p>Headlines and text.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Make it look right</h4>
+                <p>Colors, images, highlights.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Add your logo</h4>
+                <p>Optional. Pick where.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Download</h4>
+                <p>PDF or images.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Options -->
+    <section class="exports">
+        <h2 class="section-title">How you share it</h2>
+        <p class="section-subtitle">Pick your platform.</p>
+
+        <div class="export-cards">
+            <div class="export-card featured">
+                <h3>PDF for LinkedIn</h3>
+                <p>One file. LinkedIn does the carousel.</p>
+                <ul class="export-features">
+                    <li>Good quality</li>
+                    <li>Colors and fonts stay intact</li>
+                    <li>Done</li>
+                </ul>
+            </div>
+
+            <div class="export-card">
+                <h3>Images for Instagram</h3>
+                <p>One PNG per slide. 1080x1350.</p>
+                <ul class="export-features">
+                    <li>One image per slide</li>
+                    <li>Instagram's vertical format</li>
+                    <li>Multi-image post</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="builder">
+        <h2>That's it</h2>
+        <p>Go make a carousel.</p>
+        <a href="builder.html" class="btn btn-primary" style="border: 2px solid white;">make one</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Carousel Builder. Free and open source. Made for people who want to share ideas. <a href="https://github.com/michalotemek/carousel-builder">View the code on GitHub</a></p>
+    </footer>
+</body>
+</html>
